@@ -1,0 +1,13 @@
+---
+- name: update apt cache and install nginx
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+- name: hello.go copy
+  template: src=hello.go dest=/usr/share/nginx/hello.go 
+
+- name: helloupdated.go copy
+  template: src=helloupdated.go dest=/usr/share/nginx/helloupdated.go
+  notify:
+    - Restart Nginx 
